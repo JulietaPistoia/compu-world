@@ -1,0 +1,64 @@
+{% include 'header.html' %}
+
+<div class="row welcome text-center">
+    <div class="col-12">
+        <h1 class="display-4">Lista de Empleados</h1>
+    </div>
+    <hr>
+    <div class="col-12">
+        <p class="lead">Aquí encontrará la lista completa de empleados registrados.</p>
+    </div>
+</div>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for empleado in empleados %}
+        <tr>
+            <td>{{empleado[0]}}</td>
+            <td>
+                <img class="thumbnail" width="100" src="uploads/{{empleado[4]}}" alt="">
+            </td>
+            <td>{{empleado[1]}}</td>
+            <td>{{empleado[2]}}</td>
+            <td>{{empleado[3]}}</td>
+            <td>
+                <a class="btn btn-warning" href="/edit/{{empleado[0]}}">Editar</a> | <a class="btn btn-danger" onclick="return confirm('¿Desea borrar al empleado?')" href="/destroy/{{empleado[0]}}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<div>
+    <a href="{{url_for('create')}}" class="btn btn-success">
+        Ingresar nuevo empleado
+    </a>
+</div>
+<br>
+<br>
+<hr>
+<div class="container-fluid padding">
+    <div class="row text-center padding">
+        <div class="col-12">
+            <h2>Redes Sociales</h2>
+        </div>
+        <div class="col-12 social padding">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+<br>
+{% include 'footer.html' %}
